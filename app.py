@@ -8,8 +8,7 @@ app = Flask(__name__)
 config = load_config()
 
 openai_client = OpenAI(
-    api_key=config['openai']['api_key'],
-    organization ='org-zy91VcIKogamLudMARObBJbb'
+    api_key=config['openai']['api_key']
 )
 
 @app.route('/', methods=['GET'])
@@ -24,6 +23,4 @@ def chat():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
 
