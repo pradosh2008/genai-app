@@ -12,7 +12,17 @@
     <button onclick="sendMessage()">Send</button>
     <script>
         function sendMessage() {
-            const userInput = document.getElementById('userInput').value;
+            const userInput = document.getElementById('userInput').value.trim();
+            
+            if (userInput.toLowerCase() === "exit" || userInput.toLowerCase() === "quit") {
+                const chatbox = document.getElementById('chatbox');
+                chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+                chatbox.innerHTML += `<p><strong>Bot:</strong> Goodbye!</p>`;
+                document.getElementById('userInput').disabled = true;
+                document.querySelector('button').disabled = true;
+                return;
+            }
+            
             fetch('/chat', {
                 method: 'POST',
                 headers: {
